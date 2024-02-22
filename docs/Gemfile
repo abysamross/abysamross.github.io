@@ -15,6 +15,7 @@ gem "jekyll-theme-hacker", "~> 0.2.0"
 gem "github-pages", "~> 231", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
+  gem "jekyll-remote-theme"
   gem "jekyll-feed", "~> 0.12"
 end
 
