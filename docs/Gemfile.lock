@@ -286,6 +286,7 @@ DEPENDENCIES
   github-pages (~> 231)
   http_parser.rb (~> 0.6.0)
   jekyll-feed (~> 0.12)
+  jekyll-remote-theme
   jekyll-theme-hacker (~> 0.2.0)
   json (~> 2.7)
   tzinfo (>= 1, < 3)
