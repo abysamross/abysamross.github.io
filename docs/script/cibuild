@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+bundle exec jekyll build
+bundle exec htmlproofer ./_site --checks html,Links,Images,Scripts --check-sri=true
+bundle exec rubocop -D
+bundle exec rubocop -A
+bundle exec script/validate-html
+gem build jekyll-theme-hacker.gemspec
