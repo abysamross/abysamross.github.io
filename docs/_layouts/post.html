@@ -10,6 +10,23 @@ excerpt_separator: <!--more-->
 <p class="view">by {{ page.author | default: site.author }}</p>
 {% endcomment %}
 
+
+{{ content }}
+
+{% if page.tags %}
+  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+{% endif %}
+
+<ul class="texgend">
+    <li><small><span class="codesnip">this is a code snippet</span></small></li>
+    <li><small><span>|</span></small></li>
+    <li><small><span class="codepath">this/is/a/code/file/path</span></small></li>
+    <li><small><span>|</span></small></li>
+    <li><small><span><em><code>this is a code keyword</code></em></span></small></li>
+    <li><small><span>|</span></small></li>
+    <li><small><span id="gkw"><em>this is a generic keyword</em></span></small></li>
+</ul>
+
 {% comment %}
 CONTENT KEYWORD FORMATTING LEGEND:
 code - codesnip
@@ -17,9 +34,3 @@ code path - codepath
 source keywords - italics, code
 generic keywords - italics 
 {% endcomment %}
-
-{{ content }}
-
-{% if page.tags %}
-  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
-{% endif %}
