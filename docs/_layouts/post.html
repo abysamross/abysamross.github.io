@@ -10,7 +10,15 @@ excerpt_separator: <!--more-->
 <p class="view">by {{ page.author | default: site.author }}</p>
 {% endcomment %}
 
-{{content}}
+{% comment %}
+CONTENT KEYWORD FORMATTING LEGEND:
+code - codesnip
+code path - codepath
+source keywords - italics, code
+generic keywords - italics 
+{% endcomment %}
+
+{{ content }}
 
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
