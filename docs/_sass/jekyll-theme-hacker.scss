@@ -282,3 +282,59 @@ a {
 #a-title {
   text-decoration: none;
 }
+
+.date-tag {
+  font-size: small;
+  font-style: bold;
+}
+
+.post-preview__excerpt {
+  font-size: 12px;
+  font-style: italic;
+  quotes: "\201C" "\201D";
+}
+.post-preview__excerpt .codesnip {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  padding: 0em 0em;
+  font-size: 12px;
+}
+
+.codesnip {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  overflow: auto;
+  padding: 0.5em 0.5em;
+  display: table;
+  word-wrap: break-word;
+}
+
+.codepath {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  overflow: auto;
+  display: inline table;
+  word-wrap: break-word;
+}
+
+/* 
+CONTENT KEYWORD FORMATTING LEGEND:
+
+code - codesnip
+code path - codepath
+source keywords - italics, code
+generic keywords - italics 
+
+END CONTENT KEYWORD FORMATTING LEGEND:
+ */
