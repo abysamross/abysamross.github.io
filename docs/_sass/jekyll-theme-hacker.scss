@@ -103,7 +103,7 @@ header h2 {
   -webkit-font-smoothing: antialiased;
 }
 section img {
-  max-width: 100%
+  max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -293,6 +293,7 @@ a {
   font-style: italic;
   quotes: "\201C" "\201D";
 }
+
 .post-preview__excerpt .codesnip {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
@@ -328,6 +329,32 @@ a {
   word-wrap: break-word;
 }
 
+.texgend {
+  list-style: none;
+  font-size: 13px;
+}
+
+.texgend li {
+  list-style: none;
+  line-height: unset;
+  float: left; 
+  margin-right: 10px;
+  max-width: 100%;
+}
+
+.texgend span em code {
+  background-color: black;
+  color: #666;
+  font-family: monospace;
+  line-height: 1.6;
+}
+
+.texgend .codesnip {
+  margin-top: -5px;
+  margin-bottom: unset;
+  font-size: 11px;
+}
+
 /* 
 CONTENT KEYWORD FORMATTING LEGEND:
 
@@ -337,4 +364,4 @@ source keywords - italics, code
 generic keywords - italics 
 
 END CONTENT KEYWORD FORMATTING LEGEND:
- */
+*/
