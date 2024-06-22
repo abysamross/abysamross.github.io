@@ -329,6 +329,18 @@ a {
   word-wrap: break-word;
 }
 
+.ckw {
+  background-color: black;
+  color: #666;
+  font-family: monospace;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.gkw {
+  font-style: italic;
+}
+
 .texgend {
   list-style: none;
   font-size: 13px;
@@ -342,7 +354,7 @@ a {
   max-width: 100%;
 }
 
-.texgend span em code {
+.texgend .ckw {
   background-color: black;
   color: #666;
   font-family: monospace;
