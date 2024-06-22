@@ -17,15 +17,22 @@ excerpt_separator: <!--more-->
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
 
-<ul class="texgend">
-    <li><small><span class="codesnip">this is a code snippet</span></small></li>
-    <li><small><span>|</span></small></li>
-    <li><small><span class="codepath">this/is/a/code/file/path</span></small></li>
-    <li><small><span>|</span></small></li>
-    <li><small><span class="ckw">this is a code keyword</span></small></li>
-    <li><small><span>|</span></small></li>
-    <li><small><span class="gkw">this is a generic keyword</span></small></li>
-</ul>
+<table class="texgend">
+    <tr>
+        {% if page.content contains "codesnip" %}
+        <td><span class="codesnip">this is a code snippet</span></td>
+        {% endif %}
+        {% if page.content contains "codepath" %}
+        <td><span class="codepath">this/is/a/code/file/path</span></td>
+        {% endif %}
+        {% if page.content contains "ckw" %}
+        <td><span class="ckw">this is a code keyword</span></td>
+        {% endif %}
+        {% if page.content contains "gkw" %}
+        <td><span class="gkw">this is a generic keyword</span></td>
+        {% endif %}
+    </tr>
+</table>
 
 {% comment %}
 CONTENT KEYWORD FORMATTING LEGEND:
