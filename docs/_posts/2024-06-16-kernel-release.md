@@ -15,6 +15,12 @@ You can also read the same from <span class="codepath">include/config/kernel.rel
 In this post let us take a look at how this kernel release version string is formed.<br>
 <!--exend-->
 
+<span class="ckw">kernelrelease</span> is a <span class="gkw">generic target</span> for the
+<span class="gkw">Makefile</span> at the base/root of your Linux Kernel source.
+<span class="codesnip">$make help</span> from the source basedir will give you the following <span class="gkw">help</span> output about this <span class="gkw">generic target</span>:<br>
+<img class="postimgs" src="{{ '/assets/images/makehelpout.png' }}" alt='make
+help output'><br>
+
 {% comment %}
 code - codesnip <br>
 code path - codepath <br>
