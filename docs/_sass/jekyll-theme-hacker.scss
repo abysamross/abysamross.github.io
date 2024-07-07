@@ -294,14 +294,14 @@ a {
   quotes: "\201C" "\201D";
 }
 
-.post-preview__excerpt .codesnip {
+.post-preview__excerpt .termsnip {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
   padding: 0em 0em;
   font-size: 12px;
 }
 
-.codesnip {
+.termsnip {
   background: #f4f4f4;
   border: 1px solid #ddd;
   border-left: 3px solid #f36d33;
@@ -357,7 +357,7 @@ a {
   font-size: 13px;
 }
 
-.texgend .codesnip {
+.texgend .termsnip {
   margin-top: -1px;
   margin-bottom: unset;
   font-size: small;
@@ -374,16 +374,47 @@ a {
   padding: 0.5em 0.5em;
 }
 
-.postimgs:hover, .codesnip:hover, .codepath:hover, .ckw:hover, .gkw:hover {
+.postimgs:hover, .termsnip:hover, .codepath:hover, .ckw:hover, .gkw:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+
+.termimgs {
+  border: 1px solid #ddd;
+  border-left: 3px solid #00FF7F;
+  border-radius: 4px; 
+  /*padding: 5px;*/
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 25%;
+  padding: 0.5em 0.5em;
+}
+
+.signoffpenguin {
+  border: 1px solid #ddd;
+  border-radius: 4px; 
+  /*padding: 5px;*/
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 5%;
+  padding: 0.5em 0.5em;
+}
+
+.termimgs:hover, .signoffpenguin:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+
+li#lit {
+  list-style-image: none;
+}
+
 /* 
 CONTENT KEYWORD FORMATTING LEGEND:
 
-code - codesnip
+code - termsnip
 code path - codepath
-source keywords - italics, code
-generic keywords - italics 
+source keywords - ckw
+generic keywords - gkw
 
 END CONTENT KEYWORD FORMATTING LEGEND:
 */
