@@ -14,7 +14,6 @@ On building your local Linux Kernel source, the build gets a release version str
 You can also read the same from <span class="codepath">include/config/kernel.release</span> if this file was created by any of the target builds like <span class="ckw">all, vmlinux, modules</span>, etc.<br>
 In this post let us take a look at how this kernel release version string is formed.<br>
 <!--exend-->
-
 <span class="ckw">kernelrelease</span> is a <span class="gkw">generic target</span> for the
 <span class="gkw">Makefile</span> at the base/root of your Linux Kernel source.
 <span class="termsnip">$ make help</span> from the source base directory will give you the following <span class="gkw">help</span> output about this <span class="gkw">generic target</span>:<br>
@@ -31,8 +30,12 @@ The <span class="codepath">include/config/auto.conf</span> file is mandatory to 
 
 Now we can peek into <span class="codepath">./Makefile</span>, the <span class="ckw">Makefile</span> at the base of the source.
 
+<br>
+<div class="blink">(ALL CODE REFERENCES ARE FROM THE <a id="bl" href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/?h=v6.7">v6.7</a> TAG IN THE <a id="bl" href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-6.7.y">linux-6.7.y</a> BRANCH OF THE <a id="bl" href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git">Linux kernel stable tree.</a>)</div>
+<br>
+
 <h3>The Makefile</h3>
-This <span classr="gkw">Makefile</span> sets and <span class="ckw">exports</span> many variables, defines some basic <span class="gkw">make rules</span> starting from [line 2](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n2) to [line 212](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n212). 
+This <span classr="gkw">Makefile</span> sets and <span class="ckw">exports</span> many variables, defines some basic <span class="gkw">make rules</span> starting from [line 2](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n2) to [line 208](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n208). 
  These variables/rules include the default target <span class="ckw">__all</span>, the absolute path for the source tree <span class="ckw">abs_srctree</span>, the absolute path of the output directory <span class="ckw">abs_objtree</span>, <span class="gkw">make flags</span>, the make/build verbosity <span class="ckw">KBUILD_VERBOSE</span>, the <span class="ckw">make options</span>, the external modules to build <span class="ckw">KBUILD_EXTMOD</span> etc.
 
 <img class="postimgs" id="beginning" src="{{ '/assets/images/beginning.png' }}" alt='beginning'>
@@ -42,14 +45,14 @@ This <span classr="gkw">Makefile</span> sets and <span class="ckw">exports</span
 {% endcomment %}
 <img class="postimgs" src="{{ '/assets/images/outputdir.png' }}" alt='output directory'><br>
 This <span class="ckw">Makefile</span> doesn't prefer to show <span class="termsnip">Entering directory ...</span> text in its output (ie. prefers to be invoked with the <span class="ckw">--no-print-directory</span> option) except in the case where the <span class="gkw">make</span> invocation directory (<span class="ckw">PWD</span>) and the output directory (<span class="ckw">abs_objtree</span>) are different.
- This preference will result in an immediate recursive call with the <span class="ckw">--no-print-directory</span> option set and this is achieved by the <span class="ckw">__sub-make</span> rule/target.
+ This preference will result in an immediate recursive call with the <span class="ckw">--no-print-directory</span> option set after the user issues the first <span class="gkw">make</span> at the cmd line and this is achieved by the <span class="ckw">__sub-make</span> rule/target.
  And if the <span class="gkw">make</span> invocation directory (<span class="ckw">PWD</span>) and the output directory (<span class="ckw">abs_objtree</span>) are not the same we can end up recursing twice into the <span class="ckw">__sub-make</span> rule/target.
  (once with <span class="ckw">--no-print-directory</span> NOT set to show the <span class="gkw">"Entering directory ..."</span> message and then with <span class="ckw">--no-print-directory</span> set to start the <span class="ckw">make</span> process and avoid printing <span class="gkw">"Entering directory ..."</span> each time <span class="ckw">make</span> recurses into the <span class="gkw">Makefile</span> in a subdirectory).
  The <span class="ckw">__sub-make</span> rule is controlled by the <span class="ckw">need-sub-make</span> variable/flag.<br>
 <img class="postimgs" id="sub_make" src="{{ '/assets/images/sub_make.png' }}" alt='__sub-make'><br>
-The <span class="ckw">__sub-make</span> rule puts the variables definitions from [line 2](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n2) to [line 212](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n212) at the risk of being executed more than once.
+The <span class="ckw">__sub-make</span> rule puts the variable definitions from [line 2](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n2) to [line 208](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n208) at the risk of being executed more than once.
  This is avoided by defining and exporting <span class="ckw">[sub_make_done](#submake)</span> at the end of first invocation of the <span class="gkw">make</span>. 
- The value of <span class="ckw">sub_make_done</span> variable is checked at [line 45](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n45), [here](#beginning), before the variable definition are done.
+ The value of <span class="ckw">sub_make_done</span> variable is checked at [line 45](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n45), [here](#beginning), before the variable definition are done.
 
 <h3>kernelrelease rule</h3>
 <img class="postimgs" src="{{ '/assets/images/kernelreleaserule.png' }}" alt='kernelrelease rule'><br>
@@ -58,7 +61,7 @@ It is this <span class="ckw">make rule</span> with the target <span class="ckw">
 
 <h3>filechk_kernel.release variable</h3>
 The first location, from the bottom-up, where <span class="ckw">filechk_kernel.release</span> is defined is under the branch for building a specific external module.
- (checkout ['Building External Modules'](https://docs.kernel.org/kbuild/modules.html) and [line 139](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n139) - [line 156](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.9.8#n156) of the <span class="gkw">Makefile</span>)
+ (checkout ['Building External Modules'](https://docs.kernel.org/kbuild/modules.html) and [line 139](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n139) - [line 156](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Makefile?h=v6.7#n156) of the <span class="gkw">Makefile</span>)
 
 <img class="postimgs" src="{{ '/assets/images/extmod_filechk_kernel.png' }}" alt='KBUILD_EXTMOD'><br>
 
@@ -107,7 +110,7 @@ to the temp file <span class="codepath">include/config/.tmp_kernel.release</span
 Coming back to the [filechk_kernel.release](#filechk) rule, inorder to figure out if <span class="ckw">$(ORIGIN KERNELRELEASE)</span> evaluates to <span class="gkw">'file'</span> we need to check if <span class="ckw">KERNELRELEASE</span> was set somewhere earlier in the <span class="gkw">Makefile</span>.
 
 <img class="postimgs" src="{{ '/assets/images/KERNELRELEASE.png' }}" alt='kernelrelease var'><br>
-<span class="ckw">KERNELRELEASE</span> is read from <span class="codepath">include/config/kernel.release</span> in the branch for <span class="ckw">single-build</span>.
+<span class="ckw">KERNELRELEASE</span> is read from <span class="codepath">include/config/kernel.release</span> in the branch for <span class="ckw">non mixed-build</span> targets.
 But this file is not generated while making specific generic target <span class="ckw">kernelrelease</span> as explained [here](#special).
  Hence <span class="ckw">KERNELRELEASE</span> is exported with a NULL value. Though, there is nothing stopping you from creating this file before running <span class="gkw">make</span> and setting <span class="ckw">KERNELRELEASE</span> to whatever is in it during <span class="gkw">make</span>.
 
@@ -173,8 +176,8 @@ Next the <span class="ckw">tag</span> & <span class="gkw">desc</span> variables 
 If a matching <span class="ckw">tag</span> was till not found, it implies that we either do not have the <span class="ckw">tag</span> we are searching for or that we have moved past the tagged commit with later commits.
  In either case if the <span class="ckw">short</span> option was set, the function just prints (<span class="ckw">echo</span>) a "+" and returns.
  If <span class="ckw">short</span> option was not set, the function checks if it is the case that we have moved past the <span class="ckw">tag</span> by later commits and if so, the function prints the commit index (distance) of latest commit from the tagged commit as a 5 chars wide string padded with 0s to left and prefixed with a "-".
- The function follows this by printing the firt 12 chars from the <span class="gkw">HEAD</span> commit (the latest commit itself) prefixed with a "-g".
- The function return from here if the <span class="ckw">no_dirty</span> option was set.
+ The function follows this by printing the first 12 chars from the <span class="gkw">HEAD</span> commit (the latest commit itself) prefixed with a "-g".
+ The function returns from here if the <span class="ckw">no_dirty</span> option was set.
 <img class="postimgs" src="{{ '/assets/images/scm_version_func4.png' }}" alt='scm_version_func4'><br>
 At last, if the <span class="ckw">no_dirty</span> option was not set, the function prints "-dirty" if we have uncommitted changes in our source tree.
 
