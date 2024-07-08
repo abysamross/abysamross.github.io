@@ -2,7 +2,7 @@
 layout: post
 title: "Where does your local Linux Kernel build get its kernel release version string from?"
 date: 2024-07-08 03:05:00 +0530
-tags: kernel makefile build release
+tags: linux kernel makefile kernelrelease localversion kconfig build
 categories: kernel build
 ---
 ***DISCLAIMER*** This post is not intended to give an understanding of the Linux
