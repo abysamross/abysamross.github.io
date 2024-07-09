@@ -176,7 +176,7 @@ Next the <span class="ckw">tag</span> & <span class="ckw">desc</span> variables 
 If a matching <span class="ckw">tag</span> was till not found, it implies that we either do not have the <span class="ckw">tag</span> we are searching for or that we have moved past the tagged commit with later commits.
  In either case if the <span class="ckw">short</span> option was set, the function just prints (<span class="ckw">echo</span>) a "+" and returns.
  If <span class="ckw">short</span> option was not set, the function checks if it is the case that we have moved past the <span class="ckw">tag</span> by later commits and if so, the function prints the commit index (distance) of latest commit from the tagged commit as a 5 chars wide string padded with 0s to left and prefixed with a "-".
- The function follows this by printing the first 12 chars from the <span class="gkw">HEAD</span> commit (the latest commit itself) prefixed with a "-g".
+ The function follows this by printing the first 12 chars from the hash of the <span class="gkw">HEAD</span> commit (the latest commit itself) prefixed with a "-g".
  The function returns from here if the <span class="ckw">no_dirty</span> option was set.<br>
 <img class="postimgs" src="{{ '/assets/images/scm_version_func4.png' }}" alt='scm_version_func4'><br>
 At last, if the <span class="ckw">no_dirty</span> option was not set, the function prints "-dirty" if we have uncommitted changes in our source tree.
