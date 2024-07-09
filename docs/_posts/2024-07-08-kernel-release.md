@@ -114,7 +114,7 @@ Coming back to the [filechk_kernel.release](#filechk) rule, inorder to figure ou
 But this file is not generated while making specific generic target <span class="ckw">kernelrelease</span> as explained [here](#special).
  Hence <span class="ckw">KERNELRELEASE</span> is exported with a NULL value. Though, there is nothing stopping you from creating this file before running <span class="gkw">make</span> and setting <span class="ckw">KERNELRELEASE</span> to whatever is in it during <span class="gkw">make</span>.
 
-We now know that <span class="ckw">KERNELRELEASE</span> was exported from this very same <span class="gkw">Makefile</span> itself and that <span class="ckw">ifeq ($(origin KERNELRELEASE), file)</span> evaluates to <span class="gkw">TRUE</span>. Thus the variable [<span class="ckw">filechk_kernel.release</span>](#filechk) is set to the output of the script invocation [<span class="ckw">$(srctree)/scripts/setlocalversion $(srctree)</span>](#filechk).
+We now know that <span class="ckw">KERNELRELEASE</span> was exported from this very same <span class="gkw">Makefile</span> itself and that <span class="ckw">ifeq ($(origin KERNELRELEASE), file)</span> evaluates to <span class="gkw">TRUE</span>. Thus the variable [<span class="ckw">filechk_kernel.release</span>](#filechk) is set to the output of invoking the [<span class="ckw">$(srctree)/scripts/setlocalversion</span>](#filechk) script with <span class="ckw">$(srctree)</span> as the argument.
 
 <h3>single-build & mixed-build</h3>
 Before we proceed further let us digress a bit about <span
