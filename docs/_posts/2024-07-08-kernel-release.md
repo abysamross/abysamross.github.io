@@ -182,7 +182,7 @@ If a matching <span class="ckw">tag</span> was till not found, it implies that w
 At last, if the <span class="ckw">no_dirty</span> option was not set, the function prints "-dirty" if we have uncommitted changes in our source tree.
 
 <h3>Illustrations</h3>
-Some  kernelrelease string examples.<br><br>
+Some <span class="ckw">kernelrelease</span> string examples.<br><br>
 
 With <span class="ckw">CONFIG_LOCALVERSION</span> not set and <span class="ckw">CONFIG_LOCALVERSION_AUTO</span> turned OFF/ON.<br>
 <img class="termimgs" src="{{ '/assets/images/ex1.png' }}" alt='example1'><br>
