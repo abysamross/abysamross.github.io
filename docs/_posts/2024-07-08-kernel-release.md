@@ -44,7 +44,7 @@ This <span classr="gkw">Makefile</span> sets and <span class="ckw">exports</span
 <img class="postimgs" src="{{ '/assets/images/kbuild_extmod.png' }}" alt='external modules'>
 {% endcomment %}
 <img class="postimgs" src="{{ '/assets/images/outputdir.png' }}" alt='output directory'><br>
-This <span class="ckw">Makefile</span> doesn't prefer to show <span class="termsnip">Entering directory ...</span> text in its output (ie. prefers to be invoked with the <span class="ckw">--no-print-directory</span> option) except in the case where the <span class="gkw">make</span> invocation directory (<span class="ckw">PWD</span>) and the output directory (<span class="ckw">abs_objtree</span>) are different.
+This <span class="ckw">Makefile</span> doesn't prefer to show <span class="termsnip">Entering directory ...</span> text in its output (i.e. prefers to be invoked with the <span class="ckw">--no-print-directory</span> option) except in the case where the <span class="gkw">make</span> invocation directory (<span class="ckw">PWD</span>) and the output directory (<span class="ckw">abs_objtree</span>) are different.
  This preference will result in an immediate recursive call with the <span class="ckw">--no-print-directory</span> option set after the user issues the first <span class="gkw">make</span> at the cmd line and this is achieved by the <span class="ckw">__sub-make</span> rule/target.
  And if the <span class="gkw">make</span> invocation directory (<span class="ckw">PWD</span>) and the output directory (<span class="ckw">abs_objtree</span>) are not the same we can end up recursing twice into the <span class="ckw">__sub-make</span> rule/target.
  (once with <span class="ckw">--no-print-directory</span> NOT set to show the <span class="gkw">"Entering directory ..."</span> message and then with <span class="ckw">--no-print-directory</span> set to start the <span class="ckw">make</span> process and avoid printing <span class="gkw">"Entering directory ..."</span> each time <span class="ckw">make</span> recurses into the <span class="gkw">Makefile</span> in a subdirectory).
@@ -133,10 +133,10 @@ The definitions of these variables can be seen a few lines up:
  This script will try to get the values of the following variables/items if they are set/available:
 <ul>
     <li id="lit"><span class="ckw">KERNELVERSION</span></li>
-    <li id="lit"><span class="ckw">file_localversion</span>.</li>
-    <li id="lit"><span class="ckw">config_localversion</span>.</li>
+    <li id="lit"><span class="ckw">file_localversion</span></li>
+    <li id="lit"><span class="ckw">config_localversion</span></li>
     <li id="lit"><span class="ckw">LOCALVERSION</span></li>
-    <li id="lit"><span class="ckw">scm_version</span>.</li>
+    <li id="lit"><span class="ckw">scm_version</span></li>
 </ul>
 
 <img class="postimgs" src="{{ '/assets/images/setlocalversion.png' }}" alt='setlocalversion'><br>
@@ -164,7 +164,7 @@ This script forms the <span class="gkw">full scm version string</span> if the <s
 <img class="postimgs" src="{{ '/assets/images/scm_version_func1.png' }}" alt='scm_version_func1'><br>
 The function sets variables <span class="ckw">short</span> and <span class="ckw">no_dirty</span> to <span class="ckw">true</span> based on the options it was passed.
  It then does a <span class="ckw">cd</span> to the source directory the script was invoked with.
- <span class="ckw">git rev-parse --show-cdup</span> is run to make sure that we are at the source base directory.
+ <span class="ckw">git rev-parse --show-cdup</span> is run to make sure that we are at the source base directory i.e. to ensure that source directory passed to the script as argument is indeed the actual source base directory.
  <span class="ckw">git rev-parse --verify HEAD</span> is then run to make sure that the HEAD is pointing to a valid commit.
  The <span class="ckw">version_tag</span> variable is formed by stripping the <span class="ckw">SUBLEVEL</span> part from the <span class="ckw">KERNELVERSION</span> if it's 0 and then prefixing a 'v' to the resulting string.
 <img class="postimgs" src="{{ '/assets/images/scm_version_func2.png' }}" alt='scm_version_func2'><br>
