@@ -120,10 +120,10 @@ We now know that <span class="ckw">KERNELRELEASE</span> was exported from this v
 Before we proceed further let us digress a bit about <span
 class="ckw">single-build</span> and <span class="ckw">mixed-build</span>.
 <img class="postimgs" src="{{ '/assets/images/single_mixed.png' }}" alt='single-mixed-build'><br>
-<span class="ckw">single-build</span> is specified only if the make goals, (<span class="ckw">MAKECMDGOALS</span>), contain at least one <span class="ckw">single-target</span> item.
- <span class="ckw">single-target</span> items are <span class="ckw">\*.a, \*.ko, \*.o</span> etc.
+<span class="ckw">single-build</span> is specified only if the make goals, (<span class="ckw">MAKECMDGOALS</span>), contain at least one <span class="ckw">single-targets</span> item.
+ <span class="ckw">single-targets</span> items are <span class="ckw">\*.a, \*.ko, \*.o</span> etc.
 
- <span class="ckw">mixed-build</span> is set if the make goals contain more than one <span class="gkw">config</span> targets <span class="gkw">and/or</span> if there are more than one <span class="ckw">single-targets</span> <span class="gkw">and/or</span> if the <span class="gkw">clean</span> target is specified along with other make goals <span class="gkw">and/or</span> if the <span class="ckw">install</span> and <span class="ckw">modules_install</span> targets are specified together.
+ <span class="ckw">mixed-build</span> is set if the <span class="gkw">make</span> goals contain more than one <span class="gkw">config</span> targets <span class="gkw">and/or</span> if <span class="ckw">single-targets</span> is specified along with other <span class="gkw">make</span> goals <span class="gkw">and/or</span> if the <span class="ckw">clean-targets</span> is specified along with other <span class="gkw">make</span> goals <span class="gkw">and/or</span> if the <span class="ckw">install</span> & <span class="ckw">modules_install</span> targets are specified together.
 
 The definitions of these variables can be seen a few lines up:
 <img class="postimgs" src="{{ '/assets/images/definitions.png' }}" alt='definitions'><br>
