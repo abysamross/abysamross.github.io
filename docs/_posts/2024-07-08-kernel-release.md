@@ -168,7 +168,7 @@ The function sets variables <span class="ckw">short</span> and <span class="ckw"
  <span class="ckw">git rev-parse --verify HEAD</span> is then run to make sure that the HEAD is pointing to a valid commit.
  The <span class="ckw">version_tag</span> variable is formed by stripping the <span class="ckw">SUBLEVEL</span> part from the <span class="ckw">KERNELVERSION</span> if it's 0 and then prefixing a 'v' to the resulting string.
 <img class="postimgs" src="{{ '/assets/images/scm_version_func2.png' }}" alt='scm_version_func2'><br>
-Next the <span class="ckw">tag</span> & <span class="gkw">desc</span> variables are formed.
+Next the <span class="ckw">tag</span> & <span class="ckw">desc</span> variables are formed.
  First <span class="ckw">tag</span> is obtained from the contents of the <span class="ckw">file_localversion</span> variable, (which was formed by reading localversion* files from the source directory and build directories), after removing any leading '-'. 
  Then the function checks if such a tag exists using <span class="ckw">git describe --match=$tag</span> and stores the result in <span class="ckw">desc</span> variable. 
  If a matching <span class="ckw">tag</span> could not be found in the previous step, the function sets <span class="ckw">tag</span> to <span class="ckw">version_tag</span> and checks again.
